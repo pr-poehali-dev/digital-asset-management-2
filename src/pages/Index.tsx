@@ -109,7 +109,7 @@ const Index = () => {
           }}
         >
           <img
-            src="https://i.ibb.co/Z6xgVhd7/1.jpg"
+            src="https://s10.iimage.su/s/31/uAkccZPxVZvDJzziZQMzizY3Cvl9rZPsCbGM0gwr8.jpg"
             alt="Артём и Милана"
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
           />
