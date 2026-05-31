@@ -78,7 +78,7 @@ const Index = () => {
         }}
       >
         <img
-          src="https://i.ibb.co/Z6xgVhd7/1.jpg"
+          src="https://s10.iimage.su/s/31/urZG1CmxLcZcqGOKnVNXLMavJV0mqrPg2y8ob9sgH.jpg"
           alt="Артем и Милана"
           style={{ width: "100%", height: "100%", objectFit: "cover" }}
         />
