@@ -10,7 +10,7 @@ const Index = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        padding: "48px 20px 40px",
+        padding: "48px 20px 48px",
         boxSizing: "border-box",
       }}
     >
@@ -38,50 +38,101 @@ const Index = () => {
           color: "#7d5a6a",
           textAlign: "center",
           letterSpacing: "0.06em",
-          marginBottom: "12px",
+          marginBottom: "16px",
           lineHeight: "1.4",
         }}
       >
         Мы приглашаем вас на свадьбу
       </motion.h1>
 
-      {/* Дата */}
+      {/* Дата — жирная, крупная */}
       <motion.p
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.4 }}
         style={{
-          fontSize: "clamp(18px, 4vw, 28px)",
-          color: "#a07880",
-          letterSpacing: "0.12em",
-          marginBottom: "36px",
-          fontWeight: "300",
+          fontSize: "clamp(36px, 9vw, 72px)",
+          color: "#7d5a6a",
+          letterSpacing: "0.08em",
+          marginBottom: "40px",
+          fontWeight: "700",
+          lineHeight: "1",
         }}
       >
-        08 · 08 · 2026
+        08.08.2026
       </motion.p>
 
-      {/* Фото */}
+      {/* Три фото в ряд */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.92 }}
+        initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1, delay: 0.6 }}
         style={{
-          borderRadius: "50%",
-          overflow: "hidden",
-          width: "clamp(220px, 50vw, 320px)",
-          height: "clamp(220px, 50vw, 320px)",
-          boxShadow: "0 8px 40px rgba(180, 140, 160, 0.3)",
-          border: "6px solid rgba(255,255,255,0.8)",
-          marginBottom: "32px",
-          flexShrink: 0,
+          display: "flex",
+          gap: "clamp(8px, 2vw, 20px)",
+          alignItems: "center",
+          justifyContent: "center",
+          marginBottom: "36px",
+          width: "100%",
+          maxWidth: "700px",
         }}
       >
-        <img
-          src="https://s10.iimage.su/s/31/urZG1CmxLcZcqGOKnVNXLMavJV0mqrPg2y8ob9sgH.jpg"
-          alt="Артем и Милана"
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
-        />
+        {/* Левое фото */}
+        <div
+          style={{
+            borderRadius: "50%",
+            overflow: "hidden",
+            width: "clamp(90px, 22vw, 200px)",
+            height: "clamp(90px, 22vw, 200px)",
+            boxShadow: "0 6px 30px rgba(180, 140, 160, 0.25)",
+            border: "4px solid rgba(255,255,255,0.8)",
+            flexShrink: 0,
+          }}
+        >
+          <img
+            src="https://s10.iimage.su/s/31/uNJQ9gwxeJ7cSYX3LWHJVktqbyFhz11Oz4Nq0v0pv.jpg"
+            alt="Фото"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+
+        {/* Центральное фото — чуть крупнее */}
+        <div
+          style={{
+            borderRadius: "50%",
+            overflow: "hidden",
+            width: "clamp(120px, 30vw, 260px)",
+            height: "clamp(120px, 30vw, 260px)",
+            boxShadow: "0 10px 50px rgba(180, 140, 160, 0.4)",
+            border: "6px solid rgba(255,255,255,0.9)",
+            flexShrink: 0,
+          }}
+        >
+          <img
+            src="https://i.ibb.co/Z6xgVhd7/1.jpg"
+            alt="Артём и Милана"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+
+        {/* Правое фото */}
+        <div
+          style={{
+            borderRadius: "50%",
+            overflow: "hidden",
+            width: "clamp(90px, 22vw, 200px)",
+            height: "clamp(90px, 22vw, 200px)",
+            boxShadow: "0 6px 30px rgba(180, 140, 160, 0.25)",
+            border: "4px solid rgba(255,255,255,0.8)",
+            flexShrink: 0,
+          }}
+        >
+          <img
+            src="https://s10.iimage.su/s/31/uT8ybuOxlnKngTFM9BdXCcgsviWYUWoJ4TQNIqRTI.jpg"
+            alt="Фото"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
       </motion.div>
 
       {/* Имена */}
@@ -90,12 +141,12 @@ const Index = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.9, delay: 0.8 }}
         style={{
-          fontSize: "clamp(28px, 6vw, 46px)",
+          fontSize: "clamp(28px, 6vw, 50px)",
           fontStyle: "italic",
           fontWeight: "400",
           color: "#7d5a6a",
           letterSpacing: "0.04em",
-          marginBottom: "36px",
+          marginBottom: "32px",
           textAlign: "center",
         }}
       >
@@ -123,9 +174,9 @@ const Index = () => {
         style={{
           textAlign: "center",
           color: "#8a6575",
-          lineHeight: "1.9",
+          lineHeight: "2",
           fontSize: "clamp(14px, 3vw, 17px)",
-          marginBottom: "16px",
+          marginBottom: "24px",
           letterSpacing: "0.02em",
         }}
       >
@@ -133,48 +184,37 @@ const Index = () => {
           <strong style={{ fontWeight: "600", color: "#7d5a6a" }}>Адрес:</strong> Парк-Отель «Карповка»
         </p>
         <p style={{ margin: "0 0 4px" }}>Карагайский Муниципальный округ, д. Карповка</p>
-        <p style={{ margin: "0 0 4px" }}>
+        <p style={{ margin: 0 }}>
           <strong style={{ fontWeight: "600", color: "#7d5a6a" }}>Начало:</strong> 16:00
         </p>
       </motion.div>
 
-      {/* Напитки */}
+      {/* Важная информация */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 1.1 }}
+        transition={{ duration: 0.9, delay: 1.15 }}
         style={{
-          background: "rgba(255,255,255,0.55)",
-          backdropFilter: "blur(8px)",
-          borderRadius: "16px",
-          border: "1px solid rgba(201, 168, 184, 0.3)",
-          padding: "20px 28px",
+          background: "rgba(255,255,255,0.6)",
+          backdropFilter: "blur(10px)",
+          borderRadius: "20px",
+          border: "1px solid rgba(201, 168, 184, 0.35)",
+          padding: "24px 32px",
           textAlign: "center",
           color: "#8a6575",
           fontSize: "clamp(13px, 2.8vw, 16px)",
-          marginBottom: "16px",
-          maxWidth: "400px",
-          lineHeight: "1.7",
+          marginBottom: "40px",
+          maxWidth: "420px",
+          lineHeight: "1.8",
+          width: "100%",
         }}
       >
-        <p style={{ margin: "0 0 6px", fontWeight: "600", color: "#7d5a6a" }}>Наталья, просьба к гостям:</p>
-        <p style={{ margin: 0 }}>Пожалуйста, сообщите заранее, кто что будет пить — для удобства организации праздника 🥂</p>
-      </motion.div>
-
-      {/* Дресс-код */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 1.2 }}
-        style={{
-          textAlign: "center",
-          color: "#8a6575",
-          fontSize: "clamp(13px, 2.8vw, 16px)",
-          marginBottom: "44px",
-          letterSpacing: "0.02em",
-        }}
-      >
-        <span style={{ fontWeight: "600", color: "#7d5a6a" }}>Цвет одежды:</span> пастельные тона
+        <p style={{ margin: "0 0 10px", fontWeight: "600", color: "#7d5a6a", fontSize: "clamp(15px, 3vw, 18px)" }}>
+          Важная информация для гостей
+        </p>
+        <p style={{ margin: 0 }}>
+          <strong style={{ color: "#7d5a6a" }}>Дресс-код:</strong> пастельные тона 🌸
+        </p>
       </motion.div>
 
       {/* Кнопка ВК */}
@@ -184,21 +224,21 @@ const Index = () => {
         rel="noopener noreferrer"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.9, delay: 1.4 }}
-        whileHover={{ scale: 1.04, boxShadow: "0 12px 40px rgba(180, 130, 155, 0.45)" }}
+        transition={{ duration: 0.9, delay: 1.3 }}
+        whileHover={{ scale: 1.05, boxShadow: "0 14px 44px rgba(180, 130, 155, 0.5)" }}
         whileTap={{ scale: 0.97 }}
         style={{
           display: "inline-block",
-          padding: "16px 48px",
+          padding: "16px 52px",
           background: "linear-gradient(135deg, #c9a8b8, #b890a8)",
           color: "#fff",
           borderRadius: "50px",
           textDecoration: "none",
-          fontSize: "clamp(14px, 3vw, 17px)",
+          fontSize: "clamp(15px, 3vw, 18px)",
           letterSpacing: "0.08em",
           fontFamily: "'Georgia', serif",
           fontStyle: "italic",
-          boxShadow: "0 6px 24px rgba(180, 130, 155, 0.3)",
+          boxShadow: "0 6px 28px rgba(180, 130, 155, 0.35)",
           cursor: "pointer",
           marginBottom: "48px",
         }}
@@ -210,7 +250,7 @@ const Index = () => {
       <motion.div
         initial={{ scaleX: 0, opacity: 0 }}
         animate={{ scaleX: 1, opacity: 1 }}
-        transition={{ duration: 1.2, delay: 1.6 }}
+        transition={{ duration: 1.2, delay: 1.5 }}
         style={{
           width: "80px",
           height: "1px",
