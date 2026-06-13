@@ -118,6 +118,11 @@ const Index = () => {
           color: #cfaa7a;
         }
 
+        @keyframes bounce {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(8px); }
+        }
+
         .heart-photo-wrap {
           display: flex;
           justify-content: center;
@@ -164,13 +169,17 @@ const Index = () => {
             Жмите на большую кнопку, чтобы перейти в беседу ВК 👇
           </div>
 
+          <div style={{ fontSize: "2rem", animation: "bounce 1s infinite", display: "inline-block", marginBottom: "4px" }}>
+            👇
+          </div>
+
           <a
             href="https://vk.me/join/5GXpv79kl/bOFNJXQtU9bopaTRtsnFcxD2c="
             target="_blank"
             rel="noopener noreferrer"
             className="photo-button"
           >
-            📸 ФОТО
+            ❤️ ЖМИ
           </a>
 
           <div className="love-footer">
