@@ -117,6 +117,21 @@ const Index = () => {
           font-size: 0.9rem;
           color: #cfaa7a;
         }
+
+        .heart-photo-wrap {
+          display: flex;
+          justify-content: center;
+          margin-bottom: 1.6rem;
+        }
+
+        .heart-photo {
+          width: 140px;
+          height: 140px;
+          object-fit: cover;
+          clip-path: path('M70 120 C70 120 10 80 10 40 C10 20 25 5 45 5 C56 5 66 12 70 20 C74 12 84 5 95 5 C115 5 130 20 130 40 C130 80 70 120 70 120Z');
+          filter: drop-shadow(0 6px 18px rgba(180,100,60,0.3));
+          display: block;
+        }
       `}</style>
 
       <div className="wedding-body">
@@ -130,6 +145,14 @@ const Index = () => {
         <div className="heart-deco heart8">🤍</div>
 
         <div className="invitation-card">
+          <div className="heart-photo-wrap">
+            <img
+              src="https://s10.iimage.su/s/13/ufbqGyWxW8tQ6sSmHsijiUqzkzutlaVgofAWHJu9j.jpg"
+              alt="Александр и Анастасия"
+              className="heart-photo"
+            />
+          </div>
+
           <div className="names">Александр &amp; Анастасия</div>
 
           <div className="greeting">
