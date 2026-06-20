@@ -258,11 +258,24 @@ const Index = () => {
             ❤️ ЖМИ
           </motion.a>
 
+          <div style={{ marginTop: "1.4rem", opacity: 0.6, fontSize: "0.85rem", color: "#9e4a78", letterSpacing: "1px" }}>
+            или отсканируй QR-код
+          </div>
+
+          <motion.img
+            src="https://cdn.poehali.dev/projects/6f5ec041-36d5-4e87-a5fc-2f2301f8eb30/bucket/3161ed7e-3bbb-4a31-9300-db2883b73f98.png"
+            alt="QR-код для входа в беседу"
+            style={{ width: 140, height: 140, borderRadius: 16, margin: "0.8rem auto 0", display: "block", boxShadow: "0 4px 16px rgba(220,80,130,0.15)" }}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          />
+
           <div className="divider">💖</div>
 
           <div className="love-footer">Мы любим вас!</div>
 
-          <div className="hint">нажми на кнопку выше</div>
+          <div className="hint">нажми на кнопку или отсканируй QR</div>
         </motion.div>
       </div>
     </>
