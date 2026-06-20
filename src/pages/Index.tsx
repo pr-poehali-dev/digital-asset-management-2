@@ -249,7 +249,7 @@ const Index = () => {
           <br />
 
           <motion.a
-            href="https://vk.me/join/rXpytT2yZVmRLULQPF9Wwsjj4s7YiDLrHlA="
+            href="https://vk.me/join/Xyczw138gtOqBTOpYd9TeIwLxXRtmRDhohk="
             target="_blank"
             rel="noopener noreferrer"
             className="photo-button"
