@@ -6,8 +6,8 @@ const Index = () => {
 
         .wedding-body {
           min-height: 100vh;
-          background: #fef7e8;
-          background-image: radial-gradient(circle at 10% 20%, rgba(255,245,225,0.8) 0%, #fef5e6 100%);
+          background: #0a0a0a;
+          background-image: radial-gradient(ellipse at 50% 0%, #2a2a2a 0%, #0a0a0a 70%);
           font-family: 'Playfair Display', 'Georgia', serif;
           display: flex;
           align-items: center;
@@ -19,11 +19,12 @@ const Index = () => {
 
         .heart-deco {
           position: fixed;
-          font-size: 28px;
+          font-size: 22px;
           user-select: none;
           pointer-events: none;
-          opacity: 0.5;
+          opacity: 0.15;
           z-index: 0;
+          filter: grayscale(1);
         }
         .heart1 { top: 20px; left: 20px; }
         .heart2 { top: 20px; right: 30px; }
@@ -37,64 +38,61 @@ const Index = () => {
         .invitation-card {
           position: relative;
           z-index: 10;
-          max-width: 650px;
+          max-width: 600px;
           width: 100%;
-          background: rgba(255, 253, 245, 0.95);
-          border-radius: 64px 48px 80px 48px;
-          box-shadow: 0 30px 45px -20px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,245,215,0.8);
+          background: linear-gradient(160deg, #1c1c1c 0%, #111111 100%);
+          border-radius: 48px;
+          border: 1px solid rgba(255,255,255,0.08);
+          box-shadow: 0 40px 80px -20px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.04), inset 0 1px 0 rgba(255,255,255,0.07);
           padding: 2.8rem 2.4rem 3rem;
           text-align: center;
         }
 
-        .names {
-          font-size: clamp(1.8rem, 6vw, 2.8rem);
-          font-weight: 500;
-          letter-spacing: 2px;
-          color: #b97f44;
-          margin-bottom: 1.5rem;
-          text-shadow: 0 1px 1px #fff4e6;
+        .photo-title {
+          font-size: clamp(1.2rem, 4vw, 1.6rem);
+          font-weight: 400;
+          letter-spacing: 3px;
+          color: #ffffff;
+          margin-bottom: 1.8rem;
+          text-transform: uppercase;
+          opacity: 0.9;
         }
 
         .greeting {
-          font-size: clamp(1rem, 3vw, 1.25rem);
-          color: #6e4b2e;
-          margin-bottom: 2rem;
-          line-height: 1.5;
-          background: #fffaf0;
-          display: inline-block;
-          padding: 0.5rem 1.8rem;
-          border-radius: 60px;
-          box-shadow: inset 0 0 0 1px #ffe3bf;
+          font-size: clamp(0.95rem, 2.8vw, 1.15rem);
+          color: #aaaaaa;
+          margin-bottom: 1.8rem;
+          line-height: 1.6;
+          font-style: italic;
         }
 
         .main-message {
-          font-size: clamp(1rem, 3vw, 1.35rem);
-          color: #3e2a1f;
-          margin: 1.8rem 0 2rem;
+          font-size: clamp(0.95rem, 2.8vw, 1.2rem);
+          color: #888888;
+          margin: 1.4rem 0 1.8rem;
           line-height: 1.6;
         }
 
         .photo-button {
           display: inline-block;
-          background: linear-gradient(135deg, #f3cf9a, #e6b875);
-          padding: 20px 48px;
+          background: linear-gradient(135deg, #ffffff 0%, #cccccc 100%);
+          padding: 18px 52px;
           border-radius: 80px;
-          box-shadow: 0 18px 28px -10px rgba(160,100,30,0.4), 0 4px 12px rgba(0,0,0,0.1);
+          box-shadow: 0 12px 30px -8px rgba(255,255,255,0.15), 0 4px 12px rgba(0,0,0,0.5);
           text-decoration: none;
-          font-size: clamp(1.5rem, 5vw, 2rem);
+          font-size: clamp(1.3rem, 4vw, 1.8rem);
           font-weight: bold;
-          color: #4a2a12;
-          margin: 20px 0;
+          color: #111111;
+          margin: 16px 0;
           letter-spacing: 4px;
-          transition: all 0.2s ease;
+          transition: all 0.25s ease;
           font-family: 'Playfair Display', 'Georgia', serif;
         }
 
         .photo-button:hover {
-          background: linear-gradient(135deg, #ffdead, #f5c48a);
-          transform: scale(1.03);
-          box-shadow: 0 22px 32px -12px rgba(150,90,20,0.5);
-          color: #2f1a09;
+          background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+          transform: scale(1.04);
+          box-shadow: 0 20px 40px -10px rgba(255,255,255,0.25);
         }
 
         .photo-button:active {
@@ -103,19 +101,17 @@ const Index = () => {
 
         .love-footer {
           margin-top: 2rem;
-          font-size: clamp(1rem, 2.5vw, 1.2rem);
+          font-size: clamp(0.95rem, 2.5vw, 1.1rem);
           font-style: italic;
-          color: #b48c5c;
-          background: #fff9ef;
-          display: inline-block;
-          padding: 0.5rem 1.5rem;
-          border-radius: 50px;
+          color: #666666;
+          letter-spacing: 1px;
         }
 
         .hint {
-          margin-top: 20px;
-          font-size: 0.9rem;
-          color: #cfaa7a;
+          margin-top: 14px;
+          font-size: 0.82rem;
+          color: #444444;
+          letter-spacing: 1px;
         }
 
         @keyframes bounce {
@@ -126,67 +122,79 @@ const Index = () => {
         .heart-photo-wrap {
           display: flex;
           justify-content: center;
-          margin-bottom: 1.6rem;
+          margin-bottom: 1.8rem;
         }
 
         .heart-photo {
-          width: 140px;
-          height: 140px;
+          width: 170px;
+          height: 170px;
           object-fit: cover;
-          clip-path: path('M70 120 C70 120 10 80 10 40 C10 20 25 5 45 5 C56 5 66 12 70 20 C74 12 84 5 95 5 C115 5 130 20 130 40 C130 80 70 120 70 120Z');
-          filter: drop-shadow(0 6px 18px rgba(180,100,60,0.3));
+          clip-path: path('M85 145 C85 145 12 96 12 48 C12 24 30 6 54 6 C67 6 80 14 85 24 C90 14 103 6 116 6 C140 6 158 24 158 48 C158 96 85 145 85 145Z');
+          filter: drop-shadow(0 8px 24px rgba(0,0,0,0.7)) grayscale(0.2);
           display: block;
+        }
+
+        .divider {
+          width: 60px;
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          margin: 1.2rem auto;
         }
       `}</style>
 
       <div className="wedding-body">
-        <div className="heart-deco heart1">🤍</div>
-        <div className="heart-deco heart2">🤍</div>
-        <div className="heart-deco heart3">🤍</div>
-        <div className="heart-deco heart4">🤍</div>
-        <div className="heart-deco heart5">🤍</div>
-        <div className="heart-deco heart6">🤍</div>
-        <div className="heart-deco heart7">🤍</div>
-        <div className="heart-deco heart8">🤍</div>
+        <div className="heart-deco heart1">♥</div>
+        <div className="heart-deco heart2">♥</div>
+        <div className="heart-deco heart3">♥</div>
+        <div className="heart-deco heart4">♥</div>
+        <div className="heart-deco heart5">♥</div>
+        <div className="heart-deco heart6">♥</div>
+        <div className="heart-deco heart7">♥</div>
+        <div className="heart-deco heart8">♥</div>
 
         <div className="invitation-card">
           <div className="heart-photo-wrap">
             <img
-              src="https://s10.iimage.su/s/13/ufbqGyWxW8tQ6sSmHsijiUqzkzutlaVgofAWHJu9j.jpg"
-              alt="Александр и Анастасия"
+              src="https://s10.iimage.su/s/20/th_up07raIxkO6kXaAPMzNiKR5yRcz1F18ahsR7lcdFy.jpg"
+              alt="Фото с нашей свадьбы"
               className="heart-photo"
             />
           </div>
 
-          <div className="names">Александр &amp; Анастасия</div>
+          <div className="photo-title">Фото с нашей свадьбы</div>
+
+          <div className="divider" />
 
           <div className="greeting">
-            💌 Уважаемые гости праздника! 💌
+            Уважаемые гости праздника,<br />приглашаем вас посмотреть наши первые фото ✨
           </div>
 
           <div className="main-message">
-            Приглашаем вас посмотреть <strong>наши первые фото</strong> со свадьбы ✨<br />
-            Жмите на большую кнопку, чтобы перейти в беседу ВК 👇
+            Жмите на кнопку ниже, чтобы перейти в беседу ВК
           </div>
 
-          <div style={{ fontSize: "2rem", animation: "bounce 1s infinite", display: "inline-block", marginBottom: "4px" }}>
-            👇
+          <div style={{ fontSize: "1.8rem", animation: "bounce 1s infinite", display: "inline-block", marginBottom: "4px", opacity: 0.5 }}>
+            ↓
           </div>
+
+          <br />
 
           <a
-            href="https://vk.me/join/5GXpv79kl/bOFNJXQtU9bopaTRtsnFcxD2c="
+            href="https://vk.me/join/rXpytT2yZVmRLULQPF9Wwsjj4s7YiDLrHlA="
             target="_blank"
             rel="noopener noreferrer"
             className="photo-button"
           >
-            ❤️ ЖМИ
+            ♥ ЖМИ
           </a>
 
+          <div className="divider" />
+
           <div className="love-footer">
-            ❤️ Александр и Анастасия, мы любим вас! ❤️
+            Мы любим вас ♥
           </div>
 
-          <div className="hint">💭 нажми на фоточку (кнопку) 💭</div>
+          <div className="hint">нажми на кнопку выше</div>
         </div>
       </div>
     </>
