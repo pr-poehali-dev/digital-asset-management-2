@@ -1,44 +1,48 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface Heart {
+interface Balloon {
   id: number;
   x: number;
   size: number;
   duration: number;
   delay: number;
   emoji: string;
+  side: "left" | "right";
 }
 
-const EMOJIS = ["❤️", "🩷", "💕", "💖", "💗", "🤍", "💝"];
+const EMOJIS = ["🎈", "🎈", "🎈", "🌿", "🍃", "🌻", "✨"];
 
-function FloatingHearts() {
-  const [hearts, setHearts] = useState<Heart[]>([]);
+function FloatingBalloons() {
+  const [balloons, setBalloons] = useState<Balloon[]>([]);
 
   useEffect(() => {
-    const initial: Heart[] = Array.from({ length: 14 }, (_, i) => ({
+    const initial: Balloon[] = Array.from({ length: 14 }, (_, i) => ({
       id: i,
-      x: Math.random() * 100,
-      size: 18 + Math.random() * 22,
-      duration: 5 + Math.random() * 6,
+      x: Math.random() < 0.5 ? Math.random() * 12 : 88 + Math.random() * 12,
+      size: 22 + Math.random() * 26,
+      duration: 6 + Math.random() * 6,
       delay: Math.random() * 5,
       emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+      side: Math.random() < 0.5 ? "left" : "right",
     }));
-    setHearts(initial);
+    setBalloons(initial);
 
     const interval = setInterval(() => {
-      setHearts((prev) => {
-        const next: Heart = {
+      setBalloons((prev) => {
+        const side = Math.random() < 0.5 ? "left" : "right";
+        const next: Balloon = {
           id: Date.now(),
-          x: Math.random() * 100,
-          size: 18 + Math.random() * 22,
-          duration: 5 + Math.random() * 6,
+          x: side === "left" ? Math.random() * 12 : 88 + Math.random() * 12,
+          size: 22 + Math.random() * 26,
+          duration: 6 + Math.random() * 6,
           delay: 0,
           emoji: EMOJIS[Math.floor(Math.random() * EMOJIS.length)],
+          side,
         };
         return [...prev.slice(-18), next];
       });
-    }, 800);
+    }, 900);
 
     return () => clearInterval(interval);
   }, []);
@@ -46,16 +50,16 @@ function FloatingHearts() {
   return (
     <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
       <AnimatePresence>
-        {hearts.map((h) => (
+        {balloons.map((b) => (
           <motion.div
-            key={h.id}
-            initial={{ y: "110vh", x: `${h.x}vw`, opacity: 0, scale: 0.5 }}
-            animate={{ y: "-10vh", opacity: [0, 0.85, 0.85, 0], scale: [0.5, 1, 1, 0.7] }}
+            key={b.id}
+            initial={{ y: "110vh", x: `${b.x}vw`, opacity: 0, scale: 0.5, rotate: -8 }}
+            animate={{ y: "-15vh", opacity: [0, 0.9, 0.9, 0], scale: [0.5, 1, 1, 0.7], rotate: [-8, 8, -8] }}
             exit={{ opacity: 0 }}
-            transition={{ duration: h.duration, delay: h.delay, ease: "easeInOut" }}
-            style={{ position: "absolute", fontSize: h.size, lineHeight: 1 }}
+            transition={{ duration: b.duration, delay: b.delay, ease: "easeInOut" }}
+            style={{ position: "absolute", fontSize: b.size, lineHeight: 1 }}
           >
-            {h.emoji}
+            {b.emoji}
           </motion.div>
         ))}
       </AnimatePresence>
@@ -69,9 +73,9 @@ const Index = () => {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Great+Vibes&display=swap');
 
-        .wedding-body {
+        .grad-body {
           min-height: 100vh;
-          background: linear-gradient(135deg, #fff0f5 0%, #ffe4f0 40%, #ffd6e8 70%, #fff0fa 100%);
+          background: linear-gradient(135deg, #fffdf0 0%, #f3ffe9 35%, #e8f8d8 70%, #fffbe0 100%);
           font-family: 'Playfair Display', 'Georgia', serif;
           display: flex;
           align-items: center;
@@ -84,105 +88,45 @@ const Index = () => {
         .invitation-card {
           position: relative;
           z-index: 10;
-          max-width: 600px;
+          max-width: 620px;
           width: 100%;
-          background: rgba(255, 255, 255, 0.88);
+          background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(12px);
-          border-radius: 48px;
-          border: 2px solid rgba(255, 180, 210, 0.5);
+          border-radius: 40px;
+          border: 2px solid rgba(196, 222, 130, 0.5);
           box-shadow:
-            0 30px 60px -15px rgba(220, 80, 130, 0.2),
+            0 30px 60px -15px rgba(120, 160, 60, 0.2),
             0 0 0 1px rgba(255,255,255,0.9),
             inset 0 1px 0 rgba(255,255,255,1);
-          padding: 2.8rem 2.4rem 3rem;
+          padding: 2.6rem 2.2rem 2.8rem;
           text-align: center;
         }
 
-        .photo-title {
+        .grad-title {
           font-family: 'Great Vibes', cursive;
-          font-size: clamp(2rem, 6vw, 3rem);
-          color: #c2185b;
-          margin-bottom: 0.4rem;
+          font-size: clamp(2.2rem, 7vw, 3.4rem);
+          background: linear-gradient(135deg, #6a9a2d, #a8c94a, #e0c020);
+          -webkit-background-clip: text;
+          background-clip: text;
+          color: transparent;
+          margin-bottom: 1.4rem;
           line-height: 1.2;
         }
 
-        .photo-subtitle {
-          font-size: clamp(0.85rem, 2.5vw, 1rem);
-          color: #e91e8c;
-          letter-spacing: 3px;
-          text-transform: uppercase;
-          margin-bottom: 1.6rem;
-          opacity: 0.7;
-        }
-
-        .greeting {
-          font-size: clamp(1rem, 2.8vw, 1.15rem);
-          color: #7b3a60;
-          margin-bottom: 1.4rem;
-          line-height: 1.7;
-          font-style: italic;
-        }
-
-        .main-message {
-          font-size: clamp(0.95rem, 2.5vw, 1.1rem);
-          color: #9e4a78;
-          margin: 0 0 1.6rem;
-          line-height: 1.6;
-        }
-
-        .photo-button {
-          display: inline-block;
-          background: linear-gradient(135deg, #f06292, #e91e8c, #c2185b);
-          padding: 18px 52px;
-          border-radius: 80px;
-          box-shadow: 0 12px 32px -8px rgba(194,24,91,0.55), 0 4px 12px rgba(240,98,146,0.3);
-          text-decoration: none;
-          font-size: clamp(1.3rem, 4vw, 1.8rem);
-          font-weight: bold;
-          color: #ffffff;
-          margin: 14px 0;
-          letter-spacing: 4px;
-          transition: all 0.25s ease;
-          font-family: 'Playfair Display', 'Georgia', serif;
-        }
-
-        .photo-button:hover {
-          background: linear-gradient(135deg, #f48fb1, #f06292, #e91e8c);
-          transform: scale(1.05);
-          box-shadow: 0 18px 40px -8px rgba(194,24,91,0.6);
-          color: #ffffff;
-        }
-
-        .photo-button:active {
-          transform: scale(0.97);
-        }
-
-        .love-footer {
-          margin-top: 1.8rem;
-          font-family: 'Great Vibes', cursive;
-          font-size: clamp(1.5rem, 4vw, 2rem);
-          color: #e91e8c;
-        }
-
-        .hint {
-          margin-top: 10px;
-          font-size: 0.82rem;
-          color: #d48cad;
-          letter-spacing: 1px;
-        }
-
-        .heart-photo-wrap {
+        .grad-photo-wrap {
           display: flex;
           justify-content: center;
           margin-bottom: 1.6rem;
         }
 
-        .heart-photo {
-          width: 170px;
-          height: 170px;
+        .grad-photo {
+          width: 100%;
+          max-width: 420px;
+          height: 300px;
           object-fit: cover;
-          clip-path: path('M85 145 C85 145 12 96 12 48 C12 24 30 6 54 6 C67 6 80 14 85 24 C90 14 103 6 116 6 C140 6 158 24 158 48 C158 96 85 145 85 145Z');
-          filter: drop-shadow(0 6px 20px rgba(220, 80, 130, 0.4));
+          border-radius: 24px;
+          filter: drop-shadow(0 10px 24px rgba(120, 160, 60, 0.35));
+          border: 4px solid #fff;
           display: block;
         }
 
@@ -191,21 +135,70 @@ const Index = () => {
           align-items: center;
           justify-content: center;
           gap: 10px;
-          margin: 1.2rem 0;
-          color: #f48fb1;
+          margin: 1.4rem 0;
+          color: #a8c94a;
           font-size: 1rem;
-          opacity: 0.7;
+          opacity: 0.8;
         }
         .divider::before, .divider::after {
           content: '';
           flex: 1;
           height: 1px;
-          background: linear-gradient(90deg, transparent, #f48fb1, transparent);
+          background: linear-gradient(90deg, transparent, #c4de82, transparent);
+        }
+
+        .grad-message {
+          font-size: clamp(1rem, 2.8vw, 1.15rem);
+          color: #5c7a2e;
+          margin: 0 0 1.6rem;
+          line-height: 1.7;
+        }
+
+        .grad-button {
+          display: inline-block;
+          background: linear-gradient(135deg, #a8c94a, #7fb238, #6a9a2d);
+          padding: 18px 52px;
+          border-radius: 80px;
+          box-shadow: 0 12px 32px -8px rgba(106,154,45,0.5), 0 4px 12px rgba(168,201,74,0.3);
+          text-decoration: none;
+          font-size: clamp(1.2rem, 4vw, 1.6rem);
+          font-weight: bold;
+          color: #ffffff;
+          margin: 14px 0;
+          letter-spacing: 3px;
+          transition: all 0.25s ease;
+          font-family: 'Playfair Display', 'Georgia', serif;
+        }
+
+        .grad-button:hover {
+          background: linear-gradient(135deg, #b8d968, #a8c94a, #7fb238);
+          transform: scale(1.05);
+          box-shadow: 0 18px 40px -8px rgba(106,154,45,0.55);
+          color: #ffffff;
+        }
+
+        .grad-button:active {
+          transform: scale(0.97);
+        }
+
+        .grad-footer {
+          margin-top: 1.8rem;
+          font-family: 'Great Vibes', cursive;
+          font-size: clamp(1.4rem, 4vw, 1.8rem);
+          color: #e0b020;
+        }
+
+        .photographer {
+          margin-top: 12px;
+          font-size: 0.78rem;
+          color: #a3b87a;
+          letter-spacing: 1px;
+          font-style: italic;
         }
       `}</style>
 
-      <div className="wedding-body">
-        <FloatingHearts />
+      <div className="grad-body">
+        <FloatingBalloons />
 
         <motion.div
           className="invitation-card"
@@ -213,29 +206,25 @@ const Index = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="heart-photo-wrap">
+          <div className="grad-title">Наш выпуск 2026</div>
+
+          <div className="grad-photo-wrap">
             <motion.img
-              src="https://s10.iimage.su/s/20/th_up07raIxkO6kXaAPMzNiKR5yRcz1F18ahsR7lcdFy.jpg"
-              alt="Фото с нашей свадьбы"
-              className="heart-photo"
-              initial={{ scale: 0.7, opacity: 0 }}
+              src="https://s6.iimage.su/s/04/uPzC5JqxWbEo1vNzkVX5kKE0J9mQG5m4uYVTr1Ujs.jpg"
+              alt="Выпускное фото"
+              className="grad-photo"
+              initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.7, delay: 0.3, ease: "backOut" }}
             />
           </div>
 
-          <div className="photo-title">Фото с нашей свадьбы</div>
-          <div className="photo-subtitle">— с любовью для вас —</div>
+          <div className="divider">🌿</div>
 
-          <div className="divider">❤️</div>
-
-          <div className="greeting">
-            Дорогие гости,<br />
-            приглашаем вас посмотреть наши первые фото ✨
-          </div>
-
-          <div className="main-message">
-            Жмите на кнопку и переходите в нашу беседу ВК
+          <div className="grad-message">
+            Уважаемые гости праздника,<br />
+            приглашаем вас посмотреть наши первые фото ✨<br />
+            жми на кнопку
           </div>
 
           <motion.div
@@ -243,39 +232,26 @@ const Index = () => {
             animate={{ y: [0, 9, 0] }}
             transition={{ repeat: Infinity, duration: 1, ease: "easeInOut" }}
           >
-            💕
+            🌻
           </motion.div>
 
           <br />
 
           <motion.a
-            href="https://vk.me/join/Xyczw138gtOqBTOpYd9TeIwLxXRtmRDhohk="
+            href="https://vk.me/join/mEHY6WIIZfz5j9jPFFYwQUL/UTsMs3t68rU="
             target="_blank"
             rel="noopener noreferrer"
-            className="photo-button"
+            className="grad-button"
             whileTap={{ scale: 0.95 }}
           >
-            ❤️ ЖМИ
+            🌿 ЖМИ
           </motion.a>
 
-          <div style={{ marginTop: "1.4rem", opacity: 0.6, fontSize: "0.85rem", color: "#9e4a78", letterSpacing: "1px" }}>
-            или отсканируй QR-код
-          </div>
+          <div className="divider">🎓</div>
 
-          <motion.img
-            src="https://cdn.poehali.dev/projects/6f5ec041-36d5-4e87-a5fc-2f2301f8eb30/bucket/3161ed7e-3bbb-4a31-9300-db2883b73f98.png"
-            alt="QR-код для входа в беседу"
-            style={{ width: 140, height: 140, borderRadius: 16, margin: "0.8rem auto 0", display: "block", boxShadow: "0 4px 16px rgba(220,80,130,0.15)" }}
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
-          />
+          <div className="grad-footer">Спасибо, что вы с нами!</div>
 
-          <div className="divider">💖</div>
-
-          <div className="love-footer">Мы любим вас!</div>
-
-          <div className="hint">нажми на кнопку или отсканируй QR</div>
+          <div className="photographer">фотограф Наталья Широкова</div>
         </motion.div>
       </div>
     </>
