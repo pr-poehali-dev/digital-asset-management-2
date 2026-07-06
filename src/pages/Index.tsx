@@ -206,12 +206,12 @@ const Index = () => {
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          <div className="grad-title">Наш выпуск 2026</div>
+          <div className="grad-title">Наша свадьба</div>
 
           <div className="grad-photo-wrap">
             <motion.img
-              src="https://s6.iimage.su/s/04/uPzC5JqxWbEo1vNzkVX5kKE0J9mQG5m4uYVTr1Ujs.jpg"
-              alt="Выпускное фото"
+              src="https://s6.iimage.su/s/06/uxqQxWjxmzB0Ne4HS4qcSadkUMzgZly8bhSLobFo8.jpg"
+              alt="Свадебное фото"
               className="grad-photo"
               initial={{ scale: 0.85, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
@@ -222,9 +222,9 @@ const Index = () => {
           <div className="divider">🌿</div>
 
           <div className="grad-message">
-            Уважаемые гости праздника,<br />
-            приглашаем вас посмотреть наши первые фото ✨<br />
-            жми на кнопку
+            Уважаемые гости! Приглашаю вас окунуться в историю любви Александры и Дарьи — прямо сейчас мы откроем их первый свадебный альбом.
+            А вы тоже можете стать частью этого вечера: загружайте свои фото и пополняйте наш общий банк воспоминаний.
+            Пусть этот день останется с нами навсегда! 💍📸
           </div>
 
           <motion.div
@@ -238,7 +238,7 @@ const Index = () => {
           <br />
 
           <motion.a
-            href="https://vk.me/join/mEHY6WIIZfz5j9jPFFYwQUL/UTsMs3t68rU="
+            href="https://vk.me/join/eFld3UKtQotD1RM1TSClNGddC6_/uHzRiBM="
             target="_blank"
             rel="noopener noreferrer"
             className="grad-button"
