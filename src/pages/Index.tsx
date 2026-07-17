@@ -210,7 +210,7 @@ const Index = () => {
 
           <div className="grad-photo-wrap">
             <motion.img
-              src="https://s6.iimage.su/s/06/uxqQxWjxmzB0Ne4HS4qcSadkUMzgZly8bhSLobFo8.jpg"
+              src="https://s6.iimage.su/s/17/uXw3fTKxBCYmPtXpVHroDtRJa9BRZQmFHzqfjj54V.jpg"
               alt="Свадебное фото"
               className="grad-photo"
               initial={{ scale: 0.85, opacity: 0 }}
@@ -222,9 +222,7 @@ const Index = () => {
           <div className="divider">🌿</div>
 
           <div className="grad-message">
-            Уважаемые гости! Приглашаю вас окунуться в историю любви Александры и Дарьи — прямо сейчас мы откроем их первый свадебный альбом.
-            А вы тоже можете стать частью этого вечера: загружайте свои фото и пополняйте наш общий банк воспоминаний.
-            Пусть этот день останется с нами навсегда!
+            Уважаемые гости! Приглашаю вас окунуться в историю любви молодоженов — прямо сейчас мы откроем их первый свадебный альбом. А вы тоже можете стать частью этого вечера: загружайте свои фото и пополняйте наш общий банк воспоминаний. Пусть этот день останется с нами навсегда!
           </div>
 
           <motion.div
@@ -238,7 +236,7 @@ const Index = () => {
           <br />
 
           <motion.a
-            href="https://vk.me/join/eFld3UKtQotD1RM1TSClNGddC6_/uHzRiBM="
+            href="https://vk.me/join/pSXu7Jz8AHJspY56V5gaM4r2TfmFKKHvexc="
             target="_blank"
             rel="noopener noreferrer"
             className="grad-button"
