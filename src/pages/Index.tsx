@@ -236,7 +236,7 @@ const Index = () => {
           <br />
 
           <motion.a
-            href="https://vk.me/join/inffhwUGV6IjgmwDv3YuMd2y/MnpUmY61Jg="
+            href="https://vk.me/join/aWuEptZn38D2TFboAX_SUBmDj9S0unh89/A="
             target="_blank"
             rel="noopener noreferrer"
             className="grad-button"
