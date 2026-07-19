@@ -12,6 +12,7 @@ interface Balloon {
 }
 
 const EMOJIS = ["💚", "💚", "💚", "🌿", "🍃", "💚"];
+const HEART_EMOJIS = ["❤️", "💕", "💖", "❤️", "💗"];
 
 function FloatingBalloons() {
   const [balloons, setBalloons] = useState<Balloon[]>([]);
@@ -67,6 +68,103 @@ function FloatingBalloons() {
   );
 }
 
+function FloatingHearts() {
+  const [hearts, setHearts] = useState<Balloon[]>([]);
+
+  useEffect(() => {
+    const initial: Balloon[] = Array.from({ length: 12 }, (_, i) => ({
+      id: i,
+      x: Math.random() < 0.5 ? Math.random() * 9 : 91 + Math.random() * 9,
+      size: 18 + Math.random() * 22,
+      duration: 5 + Math.random() * 5,
+      delay: Math.random() * 5,
+      emoji: HEART_EMOJIS[Math.floor(Math.random() * HEART_EMOJIS.length)],
+      side: Math.random() < 0.5 ? "left" : "right",
+    }));
+    setHearts(initial);
+
+    const interval = setInterval(() => {
+      setHearts((prev) => {
+        const side = Math.random() < 0.5 ? "left" : "right";
+        const next: Balloon = {
+          id: Date.now() + 1,
+          x: side === "left" ? Math.random() * 9 : 91 + Math.random() * 9,
+          size: 18 + Math.random() * 22,
+          duration: 5 + Math.random() * 5,
+          delay: 0,
+          emoji: HEART_EMOJIS[Math.floor(Math.random() * HEART_EMOJIS.length)],
+          side,
+        };
+        return [...prev.slice(-16), next];
+      });
+    }, 750);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div style={{ position: "fixed", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
+      <AnimatePresence>
+        {hearts.map((h) => (
+          <motion.div
+            key={h.id}
+            initial={{ y: "110vh", x: `${h.x}vw`, opacity: 0, scale: 0.5, rotate: -6 }}
+            animate={{ y: "-15vh", opacity: [0, 1, 1, 0], scale: [0.5, 1, 1, 0.6], rotate: [-6, 6, -6] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: h.duration, delay: h.delay, ease: "easeInOut" }}
+            style={{ position: "absolute", fontSize: h.size, lineHeight: 1 }}
+          >
+            {h.emoji}
+          </motion.div>
+        ))}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function Firework() {
+  const particles = Array.from({ length: 20 }, (_, i) => i);
+  const colors = ["#ff3b3b", "#ff8c00", "#ffd700", "#ff4fa3", "#ff1e56"];
+
+  return (
+    <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 6, overflow: "visible" }}>
+      {particles.map((i) => {
+        const angle = (i / particles.length) * Math.PI * 2;
+        const distance = 70 + (i % 5) * 12;
+        const color = colors[i % colors.length];
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+        return (
+          <motion.div
+            key={i}
+            initial={{ x: "50%", y: "50%", opacity: 0, scale: 0 }}
+            animate={{
+              x: ["50%", `calc(50% + ${dx}px)`],
+              y: ["50%", `calc(50% + ${dy}px)`],
+              opacity: [0, 1, 0],
+              scale: [0, 1, 0.3],
+            }}
+            transition={{
+              duration: 1.3,
+              repeat: Infinity,
+              repeatDelay: 2.4,
+              ease: "easeOut",
+            }}
+            style={{
+              position: "absolute",
+              width: 7,
+              height: 7,
+              borderRadius: "50%",
+              background: color,
+              boxShadow: `0 0 8px 3px ${color}`,
+            }}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
 const Index = () => {
   return (
     <>
@@ -114,6 +212,7 @@ const Index = () => {
         }
 
         .grad-photo-wrap {
+          position: relative;
           display: flex;
           justify-content: center;
           margin-bottom: 1.6rem;
@@ -152,6 +251,15 @@ const Index = () => {
           color: #5c7a2e;
           margin: 0 0 1.6rem;
           line-height: 1.7;
+          text-align: center;
+        }
+
+        .grad-message p {
+          margin: 0 0 0.9rem;
+        }
+
+        .grad-message p:last-child {
+          margin-bottom: 0;
         }
 
         .grad-button {
@@ -199,6 +307,7 @@ const Index = () => {
 
       <div className="grad-body">
         <FloatingBalloons />
+        <FloatingHearts />
 
         <motion.div
           className="invitation-card"
@@ -209,6 +318,7 @@ const Index = () => {
           <div className="grad-title">Наша свадьба</div>
 
           <div className="grad-photo-wrap">
+            <Firework />
             <motion.img
               src="https://s6.iimage.su/s/19/uAHrpNIxjJsGHXlOK1HPYp3HD8tRia45VYcCV87CQ.jpg"
               alt="Свадебное фото"
@@ -222,7 +332,10 @@ const Index = () => {
           <div className="divider">🌿</div>
 
           <div className="grad-message">
-            Уважаемые гости! Приглашаю вас окунуться в историю любви молодоженов — прямо сейчас мы откроем их первый свадебный альбом. А вы тоже можете стать частью этого вечера: загружайте свои фото и пополняйте наш общий банк воспоминаний. Пусть этот день останется с нами навсегда!
+            <p>Уважаемые гости!</p>
+            <p>Приглашаю вас окунуться в историю любви молодоженов —<br />прямо сейчас мы откроем их первый свадебный альбом.</p>
+            <p>А вы тоже можете стать частью этого вечера: загружайте свои фото и пополняйте наш общий банк воспоминаний.</p>
+            <p>Пусть этот день останется с нами навсегда!</p>
           </div>
 
           <motion.div
