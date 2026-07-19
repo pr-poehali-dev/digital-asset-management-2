@@ -12,7 +12,7 @@ interface Balloon {
 }
 
 const EMOJIS = ["💚", "💚", "💚", "🌿", "🍃", "💚"];
-const HEART_EMOJIS = ["❤️", "💕", "💖", "❤️", "💗"];
+const HEART_EMOJIS = ["❤️", "❤️", "❤️", "❤️", "❤️"];
 
 function FloatingBalloons() {
   const [balloons, setBalloons] = useState<Balloon[]>([]);
@@ -122,32 +122,41 @@ function FloatingHearts() {
   );
 }
 
-function Firework() {
-  const particles = Array.from({ length: 20 }, (_, i) => i);
+interface FireworkProps {
+  top: string;
+  left: string;
+  size?: number;
+  delay?: number;
+  repeatDelay?: number;
+}
+
+function Firework({ top, left, size = 20, delay = 0, repeatDelay = 2.4 }: FireworkProps) {
+  const particles = Array.from({ length: size }, (_, i) => i);
   const colors = ["#ff3b3b", "#ff8c00", "#ffd700", "#ff4fa3", "#ff1e56"];
 
   return (
-    <div style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 6, overflow: "visible" }}>
+    <div style={{ position: "absolute", top, left, width: 0, height: 0, pointerEvents: "none", zIndex: 6, overflow: "visible" }}>
       {particles.map((i) => {
         const angle = (i / particles.length) * Math.PI * 2;
-        const distance = 70 + (i % 5) * 12;
+        const distance = 60 + (i % 5) * 12;
         const color = colors[i % colors.length];
         const dx = Math.cos(angle) * distance;
         const dy = Math.sin(angle) * distance;
         return (
           <motion.div
             key={i}
-            initial={{ x: "50%", y: "50%", opacity: 0, scale: 0 }}
+            initial={{ x: 0, y: 0, opacity: 0, scale: 0 }}
             animate={{
-              x: ["50%", `calc(50% + ${dx}px)`],
-              y: ["50%", `calc(50% + ${dy}px)`],
+              x: [0, dx],
+              y: [0, dy],
               opacity: [0, 1, 0],
               scale: [0, 1, 0.3],
             }}
             transition={{
               duration: 1.3,
+              delay,
               repeat: Infinity,
-              repeatDelay: 2.4,
+              repeatDelay,
               ease: "easeOut",
             }}
             style={{
@@ -318,7 +327,11 @@ const Index = () => {
           <div className="grad-title">Наша свадьба</div>
 
           <div className="grad-photo-wrap">
-            <Firework />
+            <Firework top="6%" left="12%" size={18} delay={0} repeatDelay={2.6} />
+            <Firework top="10%" left="88%" size={16} delay={0.6} repeatDelay={2.8} />
+            <Firework top="92%" left="20%" size={16} delay={1.2} repeatDelay={2.5} />
+            <Firework top="88%" left="80%" size={18} delay={1.8} repeatDelay={2.7} />
+            <Firework top="50%" left="50%" size={20} delay={2.4} repeatDelay={2.4} />
             <motion.img
               src="https://s6.iimage.su/s/19/uAHrpNIxjJsGHXlOK1HPYp3HD8tRia45VYcCV87CQ.jpg"
               alt="Свадебное фото"
