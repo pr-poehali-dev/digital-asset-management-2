@@ -210,7 +210,7 @@ const Index = () => {
 
           <div className="grad-photo-wrap">
             <motion.img
-              src="https://s6.iimage.su/s/17/uXw3fTKxBCYmPtXpVHroDtRJa9BRZQmFHzqfjj54V.jpg"
+              src="https://s6.iimage.su/s/19/uAHrpNIxjJsGHXlOK1HPYp3HD8tRia45VYcCV87CQ.jpg"
               alt="Свадебное фото"
               className="grad-photo"
               initial={{ scale: 0.85, opacity: 0 }}
